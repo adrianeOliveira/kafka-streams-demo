@@ -8,6 +8,18 @@ Kafka streams (curso udemy)
   default.[key|value].serde -> é pra serialização e deserialização
 
 ###topologia:
+É um grafo de processors ligados entre si por streams, isto é, na api kafka streams existe um stream, uma sequencia de dados 
+imutáveis e ordanados que podem ser consumidos mais de uma vez, e o stream processor, um nó no grafo que transforma os streams 
+consumidos, dado por dado, e pode criar novos streams a partir desses dados. Portanto a topologia é um grafo onde os nós 
+são os processors e as vértices são os streams.
+
+Tipos de processors:
+- source processor = nós que consomem os dados de um tópico do kafka e são os primeiros a produzirem streams de dados dentro
+  da topologia
+- sink processor = são nós que apenas consomem streams e produzem dados em um tópico do kafka, são os últimos processors dentro
+  da topolgia do kafka streams
+
+####Exemplo do curso
 1º consumir o stream de dados, no kafka streams os dados são estruturas de chave|valor
 
 2º mapear os valores do stream, por exemplo, para lower case 
