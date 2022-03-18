@@ -1,13 +1,13 @@
 # kafka-streams-demo
 
-##Anotações
+## Anotações
 Kafka streams (curso udemy)
 
-###properties:
+### properties:
   application.id = group.id do consumidor
   default.[key|value].serde -> é pra serialização e deserialização
 
-###topologia:
+### topologia:
 É um grafo de processors ligados entre si por streams, isto é, na api kafka streams existe um stream, uma sequencia de dados 
 imutáveis e ordanados que podem ser consumidos mais de uma vez, e o stream processor, um nó no grafo que transforma os streams 
 consumidos, dado por dado, e pode criar novos streams a partir desses dados. Portanto a topologia é um grafo onde os nós 
@@ -19,7 +19,7 @@ Tipos de processors:
 - sink processor = são nós que apenas consomem streams e produzem dados em um tópico do kafka, são os últimos processors dentro
   da topolgia do kafka streams
 
-####Exemplo do curso
+#### Exemplo do curso
 1º consumir o stream de dados, no kafka streams os dados são estruturas de chave|valor
 
 2º mapear os valores do stream, por exemplo, para lower case 
@@ -32,7 +32,7 @@ Tipos de processors:
   ... (ai continua conforme a proposta do exemplo usado durante o curso - é o mesmo exemplo no site oficial do Apache Kafka)
 
 
-###Internal topics no Kafka Streams:
+### Internal topics no Kafka Streams:
 São tópicos criados pela propria API do kafka streams para controle interno dos dados duranto o processamento dos mesmos. E são de dois tipos:
 - Repartionating topic: quando vc transforma/muda a chave do stream<key, value>, os dados são reparticionados usando esses topicos internos;
 - Changelog topics: quando se faz a agregação dos dados vindo do streams<key, value>, os dados são salvos nesses topicos durante o processo;
