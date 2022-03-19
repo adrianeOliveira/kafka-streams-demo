@@ -10,7 +10,6 @@ import org.apache.kafka.common.serialization.DoubleDeserializer;
 import org.apache.kafka.common.serialization.DoubleSerializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.apache.kafka.streams.StreamsConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -24,7 +23,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 
-import static com.adriane.demo.kafkastreams.KafkaStreamsConfig.STREAM_GROUP_ID;
 import static com.adriane.demo.kafkastreams.KafkaStreamsConfig.STREAM_INPUT_TOPIC;
 import static com.adriane.demo.kafkastreams.KafkaStreamsConfig.STREAM_OUTPUT_TOPIC;
 
@@ -75,7 +73,6 @@ public class KafkaConfig {
     private HashMap<String, Object> kafkaProducerConfig() {
         HashMap<String, Object> mapConfig = new HashMap<>();
         mapConfig.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        mapConfig.put(StreamsConfig.APPLICATION_ID_CONFIG, STREAM_GROUP_ID);
         mapConfig.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         mapConfig.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, DoubleSerializer.class);
         return mapConfig;
@@ -85,7 +82,7 @@ public class KafkaConfig {
         HashMap<String, Object> mapConfig = new HashMap<>();
         mapConfig.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         mapConfig.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        mapConfig.put(StreamsConfig.APPLICATION_ID_CONFIG, STREAM_GROUP_ID);
+        mapConfig.put(ConsumerConfig.GROUP_ID_CONFIG, "demo.kafkastreams.out");
         mapConfig.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         mapConfig.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, DoubleDeserializer.class);
         return mapConfig;
